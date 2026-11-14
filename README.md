@@ -12,4 +12,4 @@ A modern and responsive quiz application designed to provide an engaging user ex
 
 - Add more quiz categories
 - Add a timer for each quiz
-- Save user scores
+- Save user score

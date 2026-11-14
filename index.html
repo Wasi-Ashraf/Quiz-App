@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to light theme">&#9790;</button>
+
+    <main class="app">
+
+        <!-- 1. Student details -->
+        <section id="input-screen" class="screen" aria-labelledby="input-title">
+            <div class="card narrow">
+                <h1 id="input-title" class="title center">Welcome to the Quiz</h1>
+                <p class="muted center">Enter your details to start.</p>
+                <form id="user-form" novalidate>
+                    <div class="field">
+                        <label for="name">Full name</label>
+                        <input type="text" id="name" autocomplete="name" maxlength="50" placeholder="Enter your name" required>
+                    </div>
+                    <div class="field">
+                        <label for="rollno">Roll number</label>
+                        <input type="text" id="rollno" inputmode="numeric" maxlength="15" placeholder="Numbers only" required aria-describedby="form-error">
+                    </div>
+                    <p id="form-error" class="error" role="alert" hidden></p>
+                    <button type="submit" class="btn btn-primary btn-block">Continue</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- 2. Chapter list -->
+        <section id="chapter-screen" class="screen" aria-labelledby="chapter-title" hidden>
+            <button id="btn-change-student" type="button" class="btn-link">&larr; Change student</button>
+            <h2 id="chapter-title" class="title">Hi, <span id="display-name" class="accent"></span>! Choose a chapter</h2>
+            <p class="muted">Select a chapter to start its quiz.</p>
+            <ul id="chapter-list" class="chapter-list"></ul>
+        </section>
+
+        <!-- 3. Quiz -->
+        <section id="quiz-screen" class="screen" aria-label="Quiz" hidden>
+            <div class="quiz-top">
+                <div>
+                    <strong id="quiz-student-name" class="accent"></strong>
+                    <div id="quiz-chapter-title" class="muted small"></div>
+                </div>
+                <button id="btn-quit" type="button" class="btn btn-ghost btn-sm">Quit quiz</button>
+            </div>
+
+            <p class="quiz-count">Question <span id="current-q">1</span> of <span id="total-q">0</span></p>
+            <div id="quiz-progress" class="progress" role="progressbar" aria-label="Quiz progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <div id="quiz-progress-bar" class="progress-fill"></div>
+            </div>
+
+            <div class="card">
+                <h2 id="question-text" class="question" tabindex="-1"></h2>
+                <div id="options-container" class="options" role="group" aria-labelledby="question-text"></div>
+                <p id="feedback" class="feedback" role="status" aria-live="polite"></p>
+                <p class="muted small center hint">Tip: press 1 to 4 on your keyboard to answer.</p>
+            </div>
+        </section>
+
+        <!-- 4. Result -->
+        <section id="result-screen" class="screen" aria-labelledby="result-title" hidden>
+            <div class="card narrow center">
+                <h2 id="result-title" class="title">Quiz result</h2>
+                <p id="result-status" class="status-badge"></p>
+
+                <div id="percentage-circle" class="ring" role="img">
+                    <div class="ring-inner">
+                        <span id="percentage-text" class="ring-pct">0%</span>
+                        <span id="result-grade" class="ring-grade"></span>
+                    </div>
+                </div>
+                <p id="result-message" class="muted"></p>
+
+                <div class="stats">
+                    <div class="stat"><b id="result-correct">0</b><span>Correct</span></div>
+                    <div class="stat"><b id="result-wrong">0</b><span>Wrong</span></div>
+                    <div class="stat"><b id="result-total">0</b><span>Total</span></div>
+                </div>
+
+                <dl class="details">
+                    <div><dt>Student</dt><dd id="result-name"></dd></div>
+                    <div><dt>Roll number</dt><dd id="result-roll"></dd></div>
+                    <div><dt>Chapter</dt><dd id="result-chapter"></dd></div>
+                </dl>
+
+                <div class="actions">
+                    <button id="btn-restart" type="button" class="btn btn-primary">Take quiz again</button>
+                    <button id="btn-chapters" type="button" class="btn btn-ghost">Choose another chapter</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
